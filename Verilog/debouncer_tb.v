@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module debouncer_tb;
-   reg clk, btn;
-   wire out;
+   reg     clk, btn;
+   wire	   out;
    
    initial begin
 	  $dumpfile("test.vcd");
@@ -22,8 +22,7 @@ module debouncer_tb;
 	  
 	  #10 btn = 0;
 
-	  #20;
-	  
+	  #20;  
 
 	  #5 btn = 1;
 	  #2 btn = 0;
@@ -41,4 +40,4 @@ module debouncer_tb;
    debouncer db (clk, btn, out);  
 
 endmodule
-   
+

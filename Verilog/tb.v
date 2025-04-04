@@ -1,8 +1,9 @@
 `timescale 1ns / 1ps
 
 module tb;
-   reg clk, btn;
-   reg [15:0] sw;
+   reg         clk, btn;
+   reg  [15:0] sw;
+   
    wire [15:0] result;
 
    fsm uut(clk, btn, sw, result);
@@ -60,11 +61,13 @@ module tb;
 	  click(1, 3, 0, 0, 2, 8);	  
 	  click(4, 2, 1, 0, 1, 6);
 	  click(1, 1, 2, 1, 2, 5); 
-	  click(4, 10, 0, 2, 5, 12); // 10678.5	  
+	  click(4, 10, 0, 2, 5, 12); // 10678.5
+
+	  // Error
+	  click(1, 1, 1, 1, 5, 4);  
 
 	  #50
-	  $finish;
-	  
+	  $finish;	  
    end
    
 endmodule

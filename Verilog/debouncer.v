@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
 module debouncer (
-				  input clk, btn, 
-				  output reg out
+				   input	  clk, btn, 
+				   output reg out
 				  );
-   reg enable, clicked;
+   reg       enable, clicked;
    reg [7:0] counter;
    
 
@@ -37,6 +37,6 @@ module debouncer (
 		 out <= 0;
 	  end
    end
-	  
+   
    
 endmodule

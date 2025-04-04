@@ -5,11 +5,13 @@ module fsm (
 			 input [15:0]	   sw, 
 			 output reg [15:0] ans
 			);
-   reg [3:0] next_state, state = 0;
-   reg [15:0] a_0, a_1, a_2, a_3, a, b, x_1, x_2, x_3, result;
+   
+   reg  [3:0]  next_state, state = 0;
+   reg  [15:0] a_0, a_1, a_2, a_3, a, b, x_1, x_2, x_3, result;
+   reg		   sw_;
+   
    wire [15:0] value_1, value_2, value_3;
    wire		   enable;   
-   reg		   sw_;
 
    func_value fv_1(a_0, a_1, a_2, a_3, x_1, value_1);
    func_value fv_2(a_0, a_1, a_2, a_3, x_2, value_2);
