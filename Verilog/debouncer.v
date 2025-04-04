@@ -27,7 +27,7 @@ module debouncer (
 
    always @(counter) begin
 	  if (counter == 3 && !clicked) begin
-		 $display("Button is clicked");
+		 // $display("Button is clicked");
 		 counter <= 0;
 		 clicked <= 1;
 		 out <= 1;		 

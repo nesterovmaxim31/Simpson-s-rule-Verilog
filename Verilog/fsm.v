@@ -3,10 +3,10 @@
 module fsm (
 			 input			   clk, btn, 
 			 input [15:0]	   sw, 
-			 output reg [15:0] result
+			 output reg [15:0] ans
 			);
    reg [3:0] next_state, state = 0;
-   reg [15:0] a_0, a_1, a_2, a_3, a, b, x_1, x_2, x_3;
+   reg [15:0] a_0, a_1, a_2, a_3, a, b, x_1, x_2, x_3, result;
    wire [15:0] value_1, value_2, value_3;
    wire		   enable;   
    reg		   sw_;
@@ -18,7 +18,7 @@ module fsm (
    debouncer db(clk, btn, enable);   
    
    always @(posedge clk) begin
-	  $display("%d", state);
+	  // $display("%d", state);
 
 	  case (state)
 		// 0 - Initial state
@@ -107,7 +107,7 @@ module fsm (
 
 		// 10 - While 
 		4'b1010: begin
-		   $display("Result(uneven) = %d\n", result);
+		   // $display("Result(uneven) = %d\n", result);
 		   state <= (b > a) ? 11 : 13;
 		   x_1 <= a;
 		   x_2 <= a + 1;
@@ -117,7 +117,7 @@ module fsm (
 		// 11 - Add  
 		4'b1011: begin
 		   result <= result + (value_1 + 4 * value_2 + value_3) / 3;
-		   $display("Result = %d\n", result);
+		   // $display("Result = %d\n", result);
 		   state <= state + 1;		   
 		end
 
@@ -129,9 +129,9 @@ module fsm (
 
 		// 13 - Output result
 		4'b1101: begin
-		   $display("Result = %d\n", result);
+		   // $display("Result = %d\n", result);
 		   state <= 0;
-		   $finish;		   
+		   ans <= result;  
 		end
 
 		// 14 - Error state
