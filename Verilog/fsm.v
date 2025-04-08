@@ -37,7 +37,7 @@ module fsm (
 		4'b0001: begin
 		   if (enable) begin
 			  a_0 <= sw;
-			  state = state + 1;
+			  state <= state + 1;
 		   end			 
 		end
 
@@ -45,7 +45,7 @@ module fsm (
 		4'b0010: begin
 		   if (enable) begin
 			  a_1 <= sw;
-			  state = state + 1;
+			  state <= state + 1;
 		   end
 		end
 
@@ -53,7 +53,7 @@ module fsm (
 		4'b0011: begin
 		   if (enable) begin
 			  a_2 <= sw;
-			  state = state + 1;
+			  state <= state + 1;
 		   end
 		end
 
