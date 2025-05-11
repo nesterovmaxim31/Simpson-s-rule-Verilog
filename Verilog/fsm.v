@@ -1,23 +1,31 @@
 `timescale 1ns / 1ps
 
 module fsm (
-			 input			   clk, btn, 
-			 input [15:0]	   sw, 
-			 output reg [15:0] ans
-			);
+	    input		   clk, btn, 
+	    input [15:0]	   sw, 
+	    output reg [15:0] ans,
+            output  [7:0] anodes,
+            output  [6:0] segments
+	    );
    
    reg  [3:0]  next_state, state = 0;
-   reg  [15:0] a_0, a_1, a_2, a_3, a, b, x_1, x_2, x_3, result;
+   reg [15:0]  a_0, a_1, a_2, a_3, a, b, x_1, x_2, x_3, result;
    reg		   sw_;
+   reg [7:0]       anodes_mask = 7'b1111111;   
    
    wire [15:0] value_1, value_2, value_3;
-   wire		   enable;   
+   wire		   enable, seven_seg_display_ce;   
 
    func_value fv_1(a_0, a_1, a_2, a_3, x_1, value_1);
    func_value fv_2(a_0, a_1, a_2, a_3, x_2, value_2);
    func_value fv_3(a_0, a_1, a_2, a_3, x_3, value_3);
 
-   debouncer db(clk, btn, enable);   
+   debouncer db(clk, btn, enable);
+
+   clk_div clk_div_1 (clk, seven_seg_display_ce);
+
+   seven_seg_display seven_seg_display_1 (clk, seven_seg_display_ce, {16'b0000000000000000,ans}, anodes_mask, anodes, segments);
+   
    
    always @(posedge clk) begin
 	  // $display("%d", state);
