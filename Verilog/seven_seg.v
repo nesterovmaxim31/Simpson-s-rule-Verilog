@@ -1,4 +1,4 @@
-module seven_seg_display (
+module seven_seg (
     input clk, ce, 
     
     input [31:0] digits,
@@ -8,17 +8,9 @@ module seven_seg_display (
     output reg [6:0] segments
 );
 
-// Wires/regs
-
 reg [2:0] current_digit_index;
 
 reg [6:0] next_segments;
-
-// Assignments
-
-// Modules
-
-// Processes
 
 initial begin
     current_digit_index = 3'd0;
